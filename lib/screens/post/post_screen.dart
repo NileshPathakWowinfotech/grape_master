@@ -10,6 +10,8 @@ import 'package:grape_master/util/constants.dart';
 import 'package:grape_master/util/image_assets.dart';
 import 'package:grape_master/util/large_button.dart';
 import 'package:grape_master/util/lodaer.dart';
+import 'package:grape_master/util/prefs/PreferencesKey.dart';
+import 'package:grape_master/util/prefs/app_preference.dart';
 import 'package:grape_master/util/util.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
@@ -256,9 +258,23 @@ class _PostDetailsState extends State<PostDetails> {
                                                     item.IS_LIKE == "Yes"
                                                         ? InkWell(
                                                             onTap: () {
-                                                              ePv.addlikepost(
-                                                                  context,
-                                                                  item.POST_ID);
+                                                              if (AppPreference().getInt(
+                                                                          PreferencesKey
+                                                                              .uId) ==
+                                                                      0 ||
+                                                                  AppPreference()
+                                                                          .getInt(
+                                                                              PreferencesKey.uId) ==
+                                                                      null) {
+                                                                Utils()
+                                                                    .validationTostmassage(
+                                                                        login
+                                                                            .tr);
+                                                              } else {
+                                                                ePv.addlikepost(
+                                                                    context,
+                                                                    item.POST_ID);
+                                                              }
                                                             },
                                                             child: Image.asset(
                                                               ImageAssets
@@ -269,9 +285,23 @@ class _PostDetailsState extends State<PostDetails> {
                                                           )
                                                         : InkWell(
                                                             onTap: () {
-                                                              ePv.unlikeaddlikepost(
-                                                                  context,
-                                                                  item.POST_ID);
+                                                              if (AppPreference().getInt(
+                                                                          PreferencesKey
+                                                                              .uId) ==
+                                                                      0 ||
+                                                                  AppPreference()
+                                                                          .getInt(
+                                                                              PreferencesKey.uId) ==
+                                                                      null) {
+                                                                Utils()
+                                                                    .validationTostmassage(
+                                                                        login
+                                                                            .tr);
+                                                              } else {
+                                                                ePv.unlikeaddlikepost(
+                                                                    context,
+                                                                    item.POST_ID);
+                                                              }
                                                             },
                                                             child: Image.asset(
                                                               ImageAssets

@@ -170,7 +170,7 @@ class CropFormAdd extends StatefulWidget {
             },
             child: Icon(Icons.arrow_back)),
         title: Text(
-          widget.cropid.cropName,
+         "${widget.cropid.cropName} - ${txt_add_new_plot.tr}",
           style: TextStyle(
             color: kwhite,
             fontWeight: FontWeight.w400,
@@ -179,7 +179,6 @@ class CropFormAdd extends StatefulWidget {
         ),
       ),
       body: Consumer<plotcnt>(builder: (context, ePv, child) {
-       
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -513,21 +512,26 @@ class CropFormAdd extends StatefulWidget {
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: TextField(
-                                          style: TextStyle(color: kblack),
-                                          controller: ePv.datetimeContoller,
-                                          enabled: false,
-                                          onTap: () {
-                                            print("dkdkd");
-                                            selectDate(context);
-                                          },
-                                          cursorColor: klime,
-                                          decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: txt_date_of_planting.tr,
-                                              hintStyle: TextStyle(
-                                                  color: grey800,
-                                                  fontSize: 15)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 15),
+                                          child: TextField(
+                                          
+                                            style: TextStyle(color: kblack),
+                                            controller: ePv.datetimeContoller,
+                                            enabled: false,
+                                            onTap: () {
+                                              print("dkdkd");
+                                              selectDate(context);
+                                            },
+                                            cursorColor: klime,
+                                            decoration: InputDecoration(
+                                             // contentPadding: EdgeInsets.only(top: 0.5),
+                                                border: InputBorder.none,
+                                                hintText: txt_date_of_planting.tr,
+                                                hintStyle: TextStyle(
+                                                    color: grey800,
+                                                    fontSize: 15)),
+                                          ),
                                         ),
                                       ),
                                       Icon(Icons.arrow_drop_down)
@@ -718,8 +722,8 @@ class CropFormAdd extends StatefulWidget {
                                           borderRadius:
                                               BorderRadius.circular(3)),
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12),
+                                        padding: const EdgeInsets.only(
+                                            left: 12,top: 15),
                                         child: TextField(
                                           enabled: false,
                                           controller: ePv.waterScorceController,

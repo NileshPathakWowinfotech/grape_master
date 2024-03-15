@@ -138,7 +138,7 @@ class _QuzieScreenState extends State<QuzieScreen> {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "तुम्हाला नक्की गेम बंद करायचा आहे का",
+                              "तुम्हाला नक्की खेळ बंद करायचा आहे का ?",
                               style: TextStyle(
                                   color: kblack, fontWeight: FontWeight.w400),
                             ),

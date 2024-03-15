@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     eProvider = Provider.of<HomeController>(context, listen: false);
     init();
-    eProvider?.notification(context);
+    eProvider?.notification(context); 
     // TODO: implement initState
     super.initState();
   }
@@ -53,7 +53,104 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _oneButtonPressed(context),
+     
+          onWillPop: () async {
+        // Show a dialog and handle user's response
+        if (eProvider?.quizeModelLIst?.DATA?.length == 0) {
+          Navigator.of(context).pop(true);
+          return false;
+        } else {
+          bool shouldPop = await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                insetPadding: EdgeInsets.all(12),
+                contentPadding: EdgeInsets.zero,
+                content: SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                ImageAssets.ic_logo,
+                                height: 50,
+                              ),
+                              Text(
+                                'Grape Master',
+                                style: TextStyle(
+                                    color: kblack, fontWeight: FontWeight.w700),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              exit.tr,
+                              style: TextStyle(
+                                  color: kblack, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 28),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .pop(false); // Cancel pop
+                                  },
+                                  child: Text(
+                                    nomsg.tr,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 18),
+                                  ),
+                                ),
+                                SizedBox(width: 30),
+                                InkWell(
+                                  onTap: () {
+                                      SystemNavigator.pop(animated: true);
+                                    Navigator.of(context)
+                                        .pop(true); // Allow pop
+                                  },
+                                  child: Text(
+                                    yes.tr,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 18),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+          return shouldPop ?? false;
+        }
+        
+      },
       child: Consumer<HomeController>(builder: (context, ePv, child) {
         return Scaffold(
           appBar: AppBar(

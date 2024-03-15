@@ -826,16 +826,16 @@ class _RegisterDealerState extends State<RegisterDealer> {
                               controller: ePv.panNoController,
                               style: TextStyle(fontSize: 14),
                               onChanged: (value){
-                                 validatePAN(value); 
+                               validatePAN(value); 
                                  log("${ePv.PanValid}"); 
-                                  String correctedValue = _autoCorrectPAN(value);
-                  if (correctedValue != value) {
-                    // Update the text field with corrected value
-                    ePv.panNoController.value = TextEditingValue(
-                      text: correctedValue,
-                      selection: TextSelection.collapsed(offset: correctedValue.length),
-                    );
-                  }
+                                 String correctedValue = _autoCorrectPAN(value);
+                  // if (correctedValue != value) {
+                  //   // Update the text field with corrected value
+                  //   ePv.panNoController.value = TextEditingValue(
+                  //     text: correctedValue,
+                  //     selection: TextSelection.collapsed(offset: correctedValue.length),
+                  //   );
+                  // }
                               },
                               decoration: InputDecoration(
                                 border: InputBorder.none,

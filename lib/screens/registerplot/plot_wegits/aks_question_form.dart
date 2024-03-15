@@ -223,7 +223,7 @@ startRecording() async {
                         child: DropdownButton2<String>(
                           isExpanded: true,
                           hint: Text(
-                            txt_crop_g.tr,
+                            txt_category.tr,
                             style: TextStyle(
                               fontSize: 14,
                               color: Theme.of(context).hintColor,

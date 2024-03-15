@@ -89,166 +89,175 @@ class _ObservationReportnState extends State<ObservationReport> {
 
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 2, vertical: 8),
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {});
-                                      visibale = !visibale;
-                                    },
-                                    child: Column(
-                                      children: [
-                                        Material(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          elevation: 3,
-                                          child: Container(
-                                            height: 40,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 12),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    "${items?.codDay}",
-                                                    style: TextStyle(
-                                                        color: kdategreen,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 16),
-                                                  ),
-                                                  Icon( visibale ? Icons.arrow_drop_down: Icons.arrow_drop_up)
-                                                ],
+                                      horizontal: 2, vertical: 15),
+                                  child: Material(
+                                        borderRadius: BorderRadius.circular(5),
+                                    elevation: 5,
+                                    child: Container(
+                                                                   
+                                      decoration: BoxDecoration(  
+                                        color: kwhite,
+                                        borderRadius: BorderRadius.circular(5)
+                                        
+                                      ),
+                                      child: ExpansionTile(
+                                          initiallyExpanded: false,
+                                        title: 
+                                            Container(
+                                                 decoration: BoxDecoration(  
+                                        color: kwhite,
+                                        borderRadius: BorderRadius.circular(5)
+                                        
+                                      ),
+                                              child: Text(
+                                                "${items?.codDay}",
+                                                style: TextStyle(
+                                                    color: kdategreen,
+                                                    fontWeight:
+                                                        FontWeight.w600,
+                                                    fontSize: 16),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        Visibility(
-                                            visible: visibale,
-                                            child: ListView.builder(
-
-                                                // physics: NeverScrollableScrollPhysics(),
-
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    items?.questionList.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int i) {
-                                                  var data1 =
-                                                      items?.questionList[i];
-                                                  return InkWell(
-                                                    onTap: () async {
-                                                      ePv.answerSubmit(data1.qId).then((value) { 
-                                                          showDialog(
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        20.0),
-                                                                child:
-                                                                    AlertDialog(
-                                                                  insetPadding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              12),
-                                                                  contentPadding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  content:
-                                                                      SingleChildScrollView(
-                                                                          child:
-                                                                              questinanslist(
-                                                                                ans:data1.answer , 
-                                                                                qetionid: data1.qId,codId: items?.codId,
-
-                                                                    qetions: data1
-                                                                        .question,
-                                                                  )),
-                                                                ));
-                                                          });
-                                                      });
-                                                    
-                                                    },
-                                                    child: Material(
-                                                      elevation: 2,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 5,
-                                                                vertical: 5),
-                                                        child: Container(
-                                                          height: 35,
-                                                          child: Material(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                            elevation: 3,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5)),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Text(
-                                                                      data1!
-                                                                          .question,
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              15,
-                                                                          color:
-                                                                              grey800,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    CircleAvatar(
-                                                                      radius:
-                                                                          10,
-                                                                      backgroundColor:
-                                                                          klangbig,
-                                                                      child: Image
-                                                                          .asset(
-                                                                        ImageAssets
-                                                                            .ic_tick,
-                                                                        height:
-                                                                            13,
-                                                                        color:
-                                                                            kwhite,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                })),
-                                      ],
+                                       
+                                          
+                                         childrenPadding: EdgeInsets.symmetric(vertical: 10),
+                                       
+                                       children: [
+                                       ListView.builder(
+                                      
+                                            physics: NeverScrollableScrollPhysics(),
+                                      
+                                           shrinkWrap: true,
+                                           itemCount:
+                                               items?.questionList.length,
+                                           itemBuilder:
+                                               (BuildContext context,
+                                                   int i) {
+                                             var data1 =
+                                                 items?.questionList[i];
+                                             return InkWell(
+                                               onTap: () async {
+                                                 ePv.answerSubmit(data1.qId).then((value) { 
+                                                     showDialog(
+                                                     context: context,
+                                                     builder: (context) {
+                                                       return Padding(
+                                                           padding:
+                                                               const EdgeInsets
+                                                                       .all(
+                                                                   20.0),
+                                                           child:
+                                                               AlertDialog(
+                                                             insetPadding:
+                                                                 EdgeInsets
+                                                                     .all(
+                                                                         12),
+                                                             contentPadding:
+                                                                 EdgeInsets
+                                                                     .zero,
+                                                             content:
+                                                                 SingleChildScrollView(
+                                                                     child:
+                                                                         questinanslist(
+                                                                           ans:data1.answer , 
+                                                                           qetionid: data1.qId,codId: items?.codId,
+                                      
+                                                               qetions: data1
+                                                                   .question,
+                                                             )),
+                                                           ));
+                                                     });
+                                                 });
+                                               
+                                               },
+                                               child: Material(
+                                                 elevation: 2,
+                                                 child: Padding(
+                                                   padding:
+                                                       const EdgeInsets
+                                                               .symmetric(
+                                                           horizontal: 5,
+                                                           vertical: 5),
+                                                   child: Container(
+                                                     height: 35,
+                                                     child: Material(
+                                                       borderRadius:
+                                                           BorderRadius
+                                                               .circular(
+                                                                   5),
+                                                       elevation: 3,
+                                                       child: Container(
+                                                         height: 30,
+                                                         decoration: BoxDecoration(
+                                                             borderRadius:
+                                                                 BorderRadius
+                                                                     .circular(
+                                                                         5)),
+                                                         child: Padding(
+                                                           padding:
+                                                               const EdgeInsets
+                                                                       .all(
+                                                                   8.0),
+                                                           child: Row(
+                                                             mainAxisAlignment:
+                                                                 MainAxisAlignment
+                                                                     .spaceBetween,
+                                                             children: [
+                                                              Expanded(
+                                                                 child: Text(
+                                                                   data1!
+                                                                       .question,
+                                                                   style: TextStyle(
+                                                                       fontSize:
+                                                                           15,
+                                                                       color:
+                                                                           grey800,
+                                                                       fontWeight:
+                                                                           FontWeight.w400),
+                                                                 ),
+                                                               ),
+                                                           data1!.answer.isEmpty ? CircleAvatar(
+                                                                 radius:
+                                                                     10,
+                                                                 backgroundColor:
+                                                                     klangbig,
+                                                                 child: Image
+                                                                     .asset(
+                                                                   ImageAssets
+                                                                       .ic_tick,
+                                                                   height:
+                                                                       13,
+                                                                   color:
+                                                                       kwhite,
+                                                                 ),
+                                                               ):
+                                                                CircleAvatar(
+                                                                 radius:
+                                                                     10,
+                                                                 backgroundColor:
+                                                                     kgreen,
+                                                                 child: Image
+                                                                     .asset(
+                                                                   ImageAssets
+                                                                       .ic_tick,
+                                                                   height:
+                                                                       13,
+                                                                   color:
+                                                                       kwhite,
+                                                                 ),
+                                                               )
+                                                             ],
+                                                           ),
+                                                         ),
+                                                       ),
+                                                     ),
+                                                   ),
+                                                 ),
+                                               ),
+                                             );
+                                           }),
+                                       ],
+                                      ),
                                     ),
                                   ),
                                 );

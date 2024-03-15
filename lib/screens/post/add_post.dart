@@ -10,6 +10,8 @@ import 'package:grape_master/screens/auth/LocalString.dart';
 import 'package:grape_master/screens/post/post_controller.dart';
 import 'package:grape_master/util/constants.dart';
 import 'package:grape_master/util/large_button.dart';
+import 'package:grape_master/util/prefs/PreferencesKey.dart';
+import 'package:grape_master/util/prefs/app_preference.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,7 @@ class AddPostScreen extends StatefulWidget {
 
 class _AddPostScreenState extends State<AddPostScreen> {
   bool isOpen = false;
- 
+
   postCnt? eProvider;
   @override
   void initState() {
@@ -49,27 +51,25 @@ class _AddPostScreenState extends State<AddPostScreen> {
     try {
       final image1 = await ImagePicker().pickImage(source: source);
       if (image1 == null) return;
-        final File imageFile = File(image1.path);
- 
-    // Compress the image
-    Uint8List? compressedImage = await FlutterImageCompress.compressWithFile(
-      imageFile.absolute.path,
-      quality: 30, // Adjust the quality as needed
-    );
- List<int> compressedImageList = compressedImage!.toList();
+      final File imageFile = File(image1.path);
 
-    // Save the compressed image to a new file
-    final compressedImageFile = File('${imageFile.path}_compressed.jpg');
-    await compressedImageFile.writeAsBytes(compressedImageList);
+      // Compress the image
+      Uint8List? compressedImage = await FlutterImageCompress.compressWithFile(
+        imageFile.absolute.path,
+        quality: 30, // Adjust the quality as needed
+      );
+      List<int> compressedImageList = compressedImage!.toList();
+
+      // Save the compressed image to a new file
+      final compressedImageFile = File('${imageFile.path}_compressed.jpg');
+      await compressedImageFile.writeAsBytes(compressedImageList);
 
       eProvider?.imageData = base64Encode(compressedImageList);
-     setState(() {
-       
-     });
-  //  pve!.selectedState =null;set
-  //      pve!.selectedCity =null;
-  //    pve!.selectedtaluka =null;
-     
+      setState(() {});
+      //  pve!.selectedState =null;set
+      //      pve!.selectedCity =null;
+      //    pve!.selectedtaluka =null;
+
       this.image1 = compressedImageFile;
       // Navigator.pop(context);
     } on PlatformException catch (e) {
@@ -86,7 +86,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   //     file.writeAsBytesSync(response.bodyBytes);
   //      image5 = PickedFile(file.path);
   //   image1 = File(file.path);
-      
+
   //     print('Image saved to: ${image1}');
   //   } catch (e) {
   //     print('Failed to save image: $e');
@@ -97,13 +97,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: InkWell(
-           onTap: (){
-            Navigator.pop(context);
-           eProvider!. cropSelected = null;
-            eProvider!.discriptionController.clear();
-           },
-          child: Icon(Icons.arrow_back)),
+          leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                eProvider!.cropSelected = null;
+                eProvider!.discriptionController.clear();
+              },
+              child: Icon(Icons.arrow_back)),
           backgroundColor: kgreen,
           title: Text(
             createpost.tr,
@@ -130,65 +130,55 @@ class _AddPostScreenState extends State<AddPostScreen> {
                             fontSize: 15),
                       ),
                       h10,
-
-
-                       Container(
+                      Container(
                         height: 45,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: kblack, width: 0.3),
-                        borderRadius: BorderRadius.circular(3)),
-                    child: InkWell(
-                      onTap: (){
-                           
-                      },
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton2<String>(
-                          isExpanded: true,
-                          hint: Text(
-                            txt_crop_g.tr,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(context).hintColor,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: kblack, width: 0.3),
+                            borderRadius: BorderRadius.circular(3)),
+                        child: InkWell(
+                          onTap: () {},
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2<String>(
+                              isExpanded: true,
+                              hint: Text(
+                                txt_crop_g.tr,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: ePv.addPostCropModel?.data
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item.cropId.toString(),
+                                            child: Text(
+                                              item.cropName,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ))
+                                      ?.toList() ??
+                                  [],
+                              value: ePv.cropSelected,
+                              onChanged: (value) async {
+                                setState(() {
+                                  ePv.cropSelected = value;
+                                });
+                              },
+                              buttonStyleData: const ButtonStyleData(
+                                // padding: EdgeInsets.symmetric(horizontal: 5),
+                                height: 40,
+                              ),
+                              menuItemStyleData: const MenuItemStyleData(
+                                height: 40,
+                              ),
                             ),
-                          ),
-                          items: ePv.addPostCropModel?.data
-                              .map((item) => DropdownMenuItem<String>(
-                                    value:item.cropId.toString(),
-                                    child: Text(
-                                      item.cropName,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ))
-                              ?.toList() ?? [],
-                          value: ePv.cropSelected,
-                          onChanged: (value) async {
-                            setState(()  {
-                                  
-                            ePv.cropSelected = value;
-                                 
-
-                                  
-      
-                           
-                            });
-                          },
-                          buttonStyleData: const ButtonStyleData(
-                            // padding: EdgeInsets.symmetric(horizontal: 5),
-                            height: 40,
-                          ),
-                          menuItemStyleData: const MenuItemStyleData(
-                            height: 40,
                           ),
                         ),
                       ),
-                    ),
-                  ),      
-                    
                       h20,
                       Text(
-                       description.tr,
+                        description.tr,
                         style: TextStyle(
                             color: kgreen,
                             fontWeight: FontWeight.w500,
@@ -225,7 +215,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       ),
                       h20,
                       Text(
-                       photo.tr,
+                        photo.tr,
                         style: TextStyle(
                             color: kgreen,
                             fontWeight: FontWeight.w500,
@@ -281,10 +271,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () {
-                                                       Navigator.pop(context);
-                                                      PickImageImag(
-                                                          ImageSource.camera);
-                                                                 
+                                                      Navigator.pop(context);
+                                                      PickImageImag(ImageSource.camera);
                                                     },
                                                     child: Column(
                                                       children: [
@@ -383,10 +371,15 @@ class _AddPostScreenState extends State<AddPostScreen> {
               Center(
                   child: LargeButton(
                 onPress: () {
-                  ePv.rigstar(context);
+                  if (AppPreference().getInt(PreferencesKey.uId) == 0 ||
+                      AppPreference().getInt(PreferencesKey.uId) == null) {
+                    Utils().validationTostmassage(login.tr);
+                  } else {
+                    ePv.rigstar(context);
+                  }
                 },
                 text: Text(
-                txt_submit.tr,
+                  txt_submit.tr,
                   style: TextStyle(color: kwhite, fontWeight: FontWeight.bold),
                 ),
               ))

@@ -5,6 +5,9 @@ import 'package:grape_master/screens/registerplot/plot_controller.dart';
 import 'package:grape_master/util/constants.dart';
 import 'package:grape_master/util/image_assets.dart';
 import 'package:grape_master/util/lodaer.dart';
+import 'package:grape_master/util/prefs/PreferencesKey.dart';
+import 'package:grape_master/util/prefs/app_preference.dart';
+import 'package:grape_master/util/util.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../util/color.dart';
@@ -63,16 +66,21 @@ class _RegisterThePlotState extends State<RegisterThePlot> {
                     var item = ePv.selectedcrop?.data[i];
                     return GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType
-                                .fade, // Choose your desired animation type
-                            child: CropFormAdd(
-                              cropid: item!,
+                        if (AppPreference().getInt(PreferencesKey.uId) == 0 ||
+                            AppPreference().getInt(PreferencesKey.uId) == null) {
+                             Utils().validationTostmassage(login.tr);
+                        } else {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType
+                                  .fade, // Choose your desired animation type
+                              child: CropFormAdd(
+                                cropid: item!,
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

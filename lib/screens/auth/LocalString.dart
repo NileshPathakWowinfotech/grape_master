@@ -14,6 +14,7 @@ class Messages extends Translations {
           txt_click_here_to_listen: "ಆಡಿಯೋ ಕೇಳಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ",
           txt_record_header: "ರೆಕಾರ್ಡಿಂಗ್ ಪ್ರಾರಂಭಿಸಲು ಪ್ಲೇ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ", 
              successfullyupdatedpost :'ಪೋಸ್ಟ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ',
+                     exit  : "ನೀವು ಅಪ್ಲಿಕೇಶನ್ ನಿಂದ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?",
             createpost: "ಪೋಸ್ಟ್ ರಚಿಸಿ",
           txt_start: "ಪ್ರಾರಂಭಿಸಿ",
           txt_stop: "ನಿಲ್ಲಿಸು",
@@ -34,6 +35,7 @@ class Messages extends Translations {
           agree: "ಸ್ವೀಕರಿಸಲಾಗಿದೆ",
           txt_fullname: "ಪೂರ್ಣ ಹೆಸರು",
           txt_mobile: "ಮೊಬೈಲ್ ನಂಬರ ",
+          login : "ದಯವಿಟ್ಟು ಲಾಗಿನ್ ಆಗಿ",
           send_otp: "OTP ಕಳುಹಿಸಿ",
            deletepost:"ನೀವು ಖಚಿತವಾಗಿ ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ",
           txt_mobile_no: " ಮೊಬೈಲ್ ನಂಬರ",
@@ -540,17 +542,18 @@ class Messages extends Translations {
           txt_percent: "%",
           txt_question: "प्रश्न :",
           txt_photo: "फोटो :",
+           login : "कृपया लॉगिन करें",
           txt_q: "प्रश्न: ",
           txt_not_given: "उत्तर नहीं दिया गया",
           txt_answers: "उत्तर -",
-          txt_category: "कॅटेगरी ",
-          txt_view_more: "और देखें ",
+          txt_category: "कॅटेगरी",
+          txt_view_more: "और देखें",
           txt_select_option: "विकल्प चुनें",
           txt_submitted_answer: "सबमिट किया गया उत्तर",
           txt_next: "आगे",
           profile: "मेरी प्रोफाइल",
           txt_email_id: "ईमेल",
-          txt_website: "वेबसाइट ",
+          txt_website: "वेबसाइट",
           txt_address: "पत्ता",
           txt_subscription: "पॅकेज",
           txt_total_area_for_plot_map: "एकड़ क्षेत्र (जियो टैगिंग):",
@@ -647,6 +650,7 @@ class Messages extends Translations {
           txt_kg: "Kg दर्ज करें",
           market: "बाजार",
           txt_seepdf: "पीडीएफ देखें",
+             exit  : "क्या आप ऐप से बाहर निकलना चाहते हैं?",
           listen_audio: "ऑडियो सुनें",
           logoutmsg: "क्या आप लॉगआउट करना चाहते हैं",
           yes: "हाँ",
@@ -839,6 +843,7 @@ class Messages extends Translations {
           txt_my_plots: "नोंदणीकृत प्लॉट",
           txt_view_all: "सर्व पहा",
           txt_date_of_planting: "लागवडीची तारीख",
+           login : "कृपया लॉग इन करा",
           txt_plot_status: "प्लॉट स्थिती -",
           txt_select_chatni_type: "छाटणी प्रकार निवडा",
           txt_structure: "रचना",
@@ -993,6 +998,7 @@ class Messages extends Translations {
           txt_my_cart: "माझे कार्ट",
           txt_label_lagvad: "लागवडीची तारीख",
           txt_package_validity: "पॅकेज वैधता -",
+          exit  : "तुम्हाला ॲपमधून बाहेर पडायचे आहे का?",
           description: "तपशील  ",
           photo: "फोटो",
           txt_loading: "लोड होत आहे...",
@@ -1513,3 +1519,7 @@ String successfullyupdatedpost = "successfullyupdatedpost";
 String deactivated  = "deactivated ";
 String profileupadet  = "profileupadet";
 String gameexit  = "gameexit";
+String login  = "login";
+String exit  = "exit";
+
+ 

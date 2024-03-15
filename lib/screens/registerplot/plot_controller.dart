@@ -48,8 +48,8 @@ import '../auth/LocalString.dart';
 import '../home_Screen.dart';
 
 class plotcnt extends ChangeNotifier {
-  bool _isLoading = false;
-
+ 
+  bool _isLoading = false; 
   bool get value => _isLoading;
   bool connections = false;
   void _setLoading(bool val) {
@@ -358,7 +358,18 @@ class plotcnt extends ChangeNotifier {
   ObservationReportModel? observationReportModel;
   Future observationApiList() async {
     log(" is gg  ${AppPreference().getString(PreferencesKey.languageid).toString()} ,$plotId, $CropId");
-    _setLoading(true);
+    _setLoading(true); 
+    var jasondata = {
+       "START": 0,
+                "END": 10000,
+                "WORD": "",
+                "EXTRA1": "",
+                "EXTRA2": "",
+                "EXTRA3": plotId,
+                "LANG_ID": AppPreference().getString(PreferencesKey.languageid),
+                "CROP_ID": CropId
+    };
+    print(jasondata);
     try {
       await ApiService.instance
           .postHTTP(
@@ -378,7 +389,7 @@ class plotcnt extends ChangeNotifier {
         observationReportModel = ObservationReportModel.fromJson(value.data);
         _setLoading(false);
 
-        log('dssssssssff---${value.data}');
+      //  log('dssssssssff---${value.data}');
       });
       return observationReportModel;
     } on Exception catch (e) {

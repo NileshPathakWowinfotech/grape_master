@@ -43,7 +43,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
     // widget.item.IS_LIKE == "No" ?false :true;
     if( widget.item.IS_LIKE == "No"){
-isvisibale = false;
+      isvisibale = false;
     }else{
       isvisibale = true;
     }
@@ -64,7 +64,6 @@ isvisibale = false;
         body: Consumer<postCnt>(builder: (context, ePv, child) {
           ePv.PostId = widget.item.POST_ID;
           var dataitems = widget.item;
-         
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

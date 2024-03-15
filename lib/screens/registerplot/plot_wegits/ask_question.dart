@@ -97,7 +97,7 @@ class _AskQutionsState extends State<AskQutions> {
             padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
             child: InkWell(
               onTap: (){
-                Navigator.pop(context);
+                // Navigator.pop(context);
                             Navigator.push(
                               context,
                               PageTransition(
