@@ -61,7 +61,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
               style: TextStyle(
                   color: kwhite, fontWeight: FontWeight.w400, fontSize: 22),
             )),
-        body: Consumer<postCnt>(builder: (context, ePv, child) {
+        body: Consumer<postCnt>(builder: (context, ePv, child) {   
           ePv.PostId = widget.item.POST_ID;
           var dataitems = widget.item;
           return Column(
