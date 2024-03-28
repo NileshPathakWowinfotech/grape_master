@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-
-
 Color kblack = Colors.black;
 Color kwhite =Colors.white;
 
@@ -10,6 +7,9 @@ Color kbackground =Colors.white;
 Color ktextgrey =Colors.grey;
 Color kpink =Colors.pink; 
 Color kred =Colors.red;
+//video model 
+HexColor vgrey = HexColor("#F5F6F7");
+HexColor vborder = HexColor("#EDEDED");
 //Hexa Colors
 HexColor blueGrey = HexColor("#F1F4FA");
 HexColor kbgcolor = HexColor("#FAFAFA");
@@ -59,6 +59,5 @@ HexColor  yello = HexColor("#F7CE48");
 HexColor  bluegrey = HexColor("#595F6C");
 HexColor  brown = HexColor("#FCF9F6");
 HexColor  lblack = HexColor("#1A1A1A");
-
 HexColor  lborder = HexColor("#3F3F3F");
 

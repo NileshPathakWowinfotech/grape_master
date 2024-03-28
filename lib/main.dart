@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          //  useMaterial3: true,
+            useMaterial3: false,
         ),
         home: SplashScreen(),
         fallbackLocale: Locale("mr", "IN"),

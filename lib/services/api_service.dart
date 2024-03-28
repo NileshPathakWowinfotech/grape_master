@@ -64,7 +64,7 @@ class ApiService{
       rethrow ;
     } 
 }
-Future<Response> deleteHTTP(
+ Future<Response> deleteHTTP(
       {String? url,
       dynamic body,
       Map<String, dynamic>? headers,
@@ -76,6 +76,7 @@ Future<Response> deleteHTTP(
           data: body,
           options: Options(headers: headers));
       return response;
+      
     } on DioError catch (err) {
       final errorMessage = DioExceptions.fromDioError(err).toString();
       throw errorMessage;

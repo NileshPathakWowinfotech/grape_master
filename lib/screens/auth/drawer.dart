@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:grape_master/screens/auth/LocalString.dart';
 import 'package:grape_master/screens/auth/langvange_screen.dart';
 import 'package:grape_master/screens/auth/update_lang.dart';
+import 'package:grape_master/screens/video_Course_Screen/video_home_screen.dart';
 import 'package:grape_master/util/color.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,10 +87,13 @@ class _MyDrawerState extends State<MyDrawer> {
                 loginName: fullName == null ? "" : fullName,
               ),
               ListTile(
-                dense : true,
-                leading: Icon(Icons.home,size: 25,),
+                dense: true,
+                leading: Icon(
+                  Icons.home,
+                  size: 25,
+                ),
                 title: Text(
-                txt_homes.tr,
+                  txt_homes.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -103,28 +107,25 @@ class _MyDrawerState extends State<MyDrawer> {
                 },
               ),
               ListTile(
-                dense : true,
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UpdateProfile()));
-                      },
-                      visualDensity: VisualDensity(horizontal: 0, vertical: -1),
-                      leading: Icon(
-                        Icons.person,
-                        size: 30,
-                      ),
-                      title: Text(
-                       profile.tr,
-                        style: TextStyle(
-                            color: grey800,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-
+                dense: true,
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => UpdateProfile()));
+                },
+                visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+                leading: Icon(
+                  Icons.person,
+                  size: 30,
+                ),
+                title: Text(
+                  profile.tr,
+                  style: TextStyle(
+                      color: grey800,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
               ePv.delerStutus == "Yes"
                   ? ListTile(
                       onTap: () {
@@ -181,15 +182,12 @@ class _MyDrawerState extends State<MyDrawer> {
                   setState(() {
                     index = 2;
                     Navigator.pop(context);
-                    Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Updatelang()));
-                        setState(() {
-                          index = 1;
-                          // Navigator.pop(context);
-                        });
-                    
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Updatelang()));
+                    setState(() {
+                      index = 1;
+                      // Navigator.pop(context);
+                    });
                   });
                 },
                 visualDensity: VisualDensity(horizontal: 0, vertical: -3),
@@ -199,7 +197,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: grey800,
                 ),
                 title: Text(
-                 txt_change_language.tr,
+                  txt_change_language.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -215,7 +213,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: grey800,
                 ),
                 title: Text(
-                 txt_share.tr,
+                  txt_share.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -246,7 +244,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: grey800,
                 ),
                 title: Text(
-                 txt_rate_app.tr,
+                  txt_rate_app.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -270,7 +268,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   size: 30,
                 ),
                 title: Text(
-                 txt_contact_us.tr,
+                  txt_contact_us.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -290,7 +288,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: grey800,
                 ),
                 title: Text(
-                 txt_about_us.tr,
+                  txt_about_us.tr,
                   style: TextStyle(
                       color: grey800,
                       fontSize: 16,
@@ -318,7 +316,27 @@ class _MyDrawerState extends State<MyDrawer> {
                       fontWeight: FontWeight.w400),
                 ),
               ),
-
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VideosHomeScreen()));
+                },
+                leading: Image.asset(
+                  ImageAssets.ic_terms,
+                  height: 30,
+                  color: grey800,
+                ),
+                title: Text(
+                "Videos Cours",
+                  style: TextStyle(
+                      color: grey800,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
               ListTile(
                   leading: Image.asset(
                     ImageAssets.ic_logout,
@@ -375,11 +393,12 @@ class _MyDrawerState extends State<MyDrawer> {
                                         ),
                                         h10,
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
                                           child: Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                             logoutmsg.tr,
+                                              logoutmsg.tr,
                                               style: TextStyle(
                                                   color: kblack,
                                                   fontWeight: FontWeight.w400),
@@ -413,11 +432,12 @@ class _MyDrawerState extends State<MyDrawer> {
                                                         AppPreference()
                                                             .clearSharedPreferences()
                                                             .then((value) {
-                                                          Get.to(LangvangeSelection());
+                                                          Get.to(
+                                                              LangvangeSelection());
                                                         });
                                                       },
                                                       child: Text(
-                                                       yes.tr,
+                                                        yes.tr,
                                                         style: TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 18),
@@ -432,10 +452,7 @@ class _MyDrawerState extends State<MyDrawer> {
                                 ),
                               ));
                         });
-
-                  
                   }),
-            
             ],
           ),
         ),

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:grape_master/screens/Home/home_controller.dart';
 import 'package:grape_master/screens/auth/LocalString.dart';
 import 'package:grape_master/screens/post/post_screen.dart';
+import 'package:grape_master/screens/video_Course_Screen/home/Home_screen.dart';
+import 'package:grape_master/screens/video_Course_Screen/home/my_Course_list.dart';
 import 'package:grape_master/util/color.dart';
 import 'package:grape_master/util/constants.dart';
 import 'package:grape_master/util/image_assets.dart';
@@ -31,7 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Example:
     Home(),
     PostDetails(),
-    MyFarms()
+    MyFarms(),
+    HomeScreenVideo()
   ];
   HomeController? eProvider;
 
@@ -165,8 +168,48 @@ class _MyHomePageState extends State<MyHomePage> {
             //   },
             // ),
             actions: [
+               InkWell(
+                onTap: () {
+                  
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType
+                          .fade, // Choose your desired animation type
+                      child: MyCourseLIst(),
+                    ),
+                  );
+                },
+                child: Stack(
+                  alignment: Alignment.centerRight,
+                  children: [
+                
+                   
+                    InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.play_circle_filled,
+                        size: 35,
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 12,
+                      child: CircleAvatar(
+                        radius: 10,
+                        backgroundColor: Colors.blue, // Customize color as needed
+                        child: Text(
+                       "0", // You can use the actual notification count here
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               InkWell(
                 onTap: () {
+                  
                   Navigator.push(
                     context,
                     PageTransition(
@@ -179,6 +222,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Stack(
                   alignment: Alignment.centerRight,
                   children: [
+                
+                   
                     InkWell(
                       onTap: () {},
                       child: Icon(
@@ -222,6 +267,8 @@ class _MyHomePageState extends State<MyHomePage> {
           body: _pages[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: kgreen,
+            unselectedItemColor: const Color.fromARGB(255, 162, 159, 159),
+              type: BottomNavigationBarType.fixed,
             currentIndex: _currentIndex,
             onTap: (index) {
               setState(() {
@@ -230,6 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             items: [
               BottomNavigationBarItem(
+                
                 icon: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Icon(
@@ -260,7 +308,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 label: '${txt_live.tr}',
-              ),
+              ), 
+            BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: Image.asset(
+                    "assets/images/elearning.png",
+                    height: 25,
+                    color: _currentIndex == 3 ? kgreen : lbottom,
+                  ),
+                ),
+                label: 'Courses',
+              ), 
+              
             ],
           ),
         );
